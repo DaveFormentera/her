@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Love ❤️</title>
+  
+  <style>
+    /* ==================== RESET & BASE ==================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background-image: url(cat1valbg.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    /* ==================== FLOATING HEARTS ==================== */
+    .hearts-background {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      font-size: 24px;
+      opacity: 0;
+      animation: floatUp 10s ease-in infinite;
+    }
+
+    .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .heart:nth-child(2) { left: 25%; animation-delay: 2s; }
+    .heart:nth-child(3) { left: 40%; animation-delay: 4s; }
+    .heart:nth-child(4) { left: 55%; animation-delay: 1s; }
+    .heart:nth-child(5) { left: 70%; animation-delay: 3s; }
+    .heart:nth-child(6) { left: 85%; animation-delay: 5s; }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(0.8) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.7;
+      }
+      90% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* ==================== INTRO: CAR ANIMATION ==================== */
+    .intro-scene {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ffeef8, #fff5f9);
+      transition: opacity 0.5s ease;
+    }
+
+    .intro-scene.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .car {
+      width: 200px;
+      height: auto;
+      animation: driveInAndGrow 4.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes driveInAndGrow {
+      0% {
+        transform: translateX(-150vw) scale(0.3);
+        opacity: 0;
+      }
+      50% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+      }
+      85% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(0) scale(8);
+        opacity: 0;
+      }
+    }
+
+    /* ==================== FLASH TRANSITION ==================== */
+    .flash-overlay {
+      position: fixed;
+      inset: 0;
+      background: white;
+      z-index: 99;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .flash-overlay.active {
+      opacity: 1;
+    }
+
+    /* ==================== BOOK SCENE ==================== */
+    .book-scene {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .book-scene.visible {
+      display: flex;
+    }
+
+    .book {
+      position: relative;
+      width: 500px;
+      height: 350px;
+      background-image: url(cat2musicbg.jpg);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(255, 90, 160, 0.3);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid #ffb3d9;
+    }
+
+    .book:hover {
+      transform: scale(1.05) translateY(-5px);
+      box-shadow: 0 25px 70px rgba(255, 90, 160, 0.4);
+    }
+
+    .book-content {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .book-title {
+      font-size: 32px;
+      color: #ff2f87;
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-shadow: 0 2px 4px rgba(255, 47, 135, 0.2);
+    }
+
+    .book-subtitle {
+      font-size: 18px;
+      color: #ff5ca8;
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.05); }
+    }
+
+    /* ==================== VALENTINE QUESTION ==================== */
+    .valentine-container {
+      position: fixed;
+      inset: 0;
+      z-index: 75;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background-image: url(cat1valbg.jpg);
+      backdrop-filter: blur(15px);
+      padding: 20px;
+    }
+
+    .valentine-container.visible {
+      display: flex;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .valentine-layout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      max-width: 1200px;
+    }
+
+    .cat-image {
+      width: 320px;
+      height: auto;
+      filter: drop-shadow(0 15px 40px rgba(255, 90, 160, 0.3));
+      animation: floatCat 3s ease-in-out infinite;
+    }
+
+    @keyframes floatCat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .valentine-card {
+      background-image: url(pinkbg.jpg);
+      border-radius: 30px;
+      padding: 40px;
+      margin-bottom: 200px;
+      width: 420px;
+      max-width: 100%;
+      box-shadow: 0 20px 60px rgba(255, 90, 160, 0.3);
+      text-align: center;
+      animation: slideUp 0.6s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-title {
+      font-size: 28px;
+      color: #ff2f87;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .card-message {
+      font-size: 18px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 35px;
+      border: none;
+      border-radius: 50px;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, #ff5ca8, #ff2f87);
+      color: white;
+    }
+
+    .btn-yes:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(255, 47, 135, 0.4);
+    }
+
+    .btn-yes:active {
+      transform: translateY(-1px) scale(1.02);
+    }
+
+    .btn-no {
+      background: #ffe4f2;
+      color: #ff2f87;
+    }
+
+    .btn-no:hover {
+      transform: scale(0.95);
+      opacity: 0.8;
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 768px) {
+      .valentine-layout {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .cat-image {
+        width: 240px;
+      }
+
+      .valentine-card {
+        width: 90%;
+        padding: 30px 25px;
+      }
+
+      .card-title {
+        font-size: 24px;
+      }
+
+      .card-message {
+        font-size: 16px;
+      }
+
+      .book {
+        width: 90%;
+        max-width: 450px;
+        height: 300px;
+      }
+
+      .book-title {
+        font-size: 26px;
+      }
+
+      .book-subtitle {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cat-image {
+        width: 200px;
+      }
+
+      .valentine-card {
+        padding: 25px 20px;
+      }
+
+      .button-group {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .book {
+        height: 250px;
+      }
+
+      .book-title {
+        font-size: 22px;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ==================== FINAL SCENE ==================== */
+    .final-scene {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background-image: url(cat1valbg.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .final-scene.visible {
+      display: flex;
+      opacity: 1;
+    }
+
+    .final-content {
+      text-align: center;
+      color: white;
+      animation: fadeInScale 1s ease 0.5s both;
+    }
+
+    .final-title {
+      font-size: 48px;  
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .final-message {
+      font-size: 22px;
+      margin-bottom: 40px;
+      opacity: 0.95;
+    }
+
+    .btn-back {
+      padding: 16px 40px;
+      border: 3px solid rgb(255, 255, 255);
+      border-radius: 50px;
+      background: transparent;
+      color: rgb(255, 255, 255);
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-back:hover {
+      background: rgb(255, 255, 255);
+      color: rgb(238, 52, 83);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .final-title {
+        font-size: 32px;
+      }
+
+      .final-message {
+        font-size: 18px;
+      }
+
+      .btn-back {
+        padding: 14px 35px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Hearts Background -->
+  <div class="hearts-background">
+    <div class="heart">💗</div>
+    <div class="heart">💖</div>
+    <div class="heart">💕</div>
+    <div class="heart">💘</div>
+    <div class="heart">❤️</div>
+    <div class="heart">💝</div>
+  </div>
+
+  <!-- Flash Overlay -->
+  <div class="flash-overlay" id="flashOverlay"></div>
+
+  <!-- Intro: Car Animation -->
+  <div class="intro-scene" id="introScene">
+    <svg class="car" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Simple car illustration -->
+      <rect x="30" y="60" width="140" height="45" rx="8" fill="#ff5ca8"/>
+      <rect x="45" y="45" width="50" height="30" rx="5" fill="#ff8dc7"/>
+      <rect x="105" y="45" width="50" height="30" rx="5" fill="#ff8dc7"/>
+      <circle cx="60" cy="105" r="12" fill="#333"/>
+      <circle cx="140" cy="105" r="12" fill="#333"/>
+      <circle cx="60" cy="105" r="6" fill="#888"/>
+      <circle cx="140" cy="105" r="6" fill="#888"/>
+    </svg>
+  </div>
+
+  <!-- Book Scene -->
+  <div class="book-scene" id="bookScene">
+    <div class="book" id="bookElement">
+      <div class="book-content">
+        <div class="book-title">💌 My Love Book 💌</div>
+        <div class="book-subtitle">Click to open your surprise ✨</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Valentine Question -->
+  <div class="valentine-container" id="valentineContainer">
+    <div class="valentine-layout">
+      <svg class="cat-image" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Cute cat illustration -->
+        <ellipse cx="100" cy="120" rx="60" ry="55" fill="#ffb3d9"/>
+        <circle cx="75" cy="100" r="8" fill="#333"/>
+        <circle cx="125" cy="100" r="8" fill="#333"/>
+        <ellipse cx="80" cy="85" rx="15" ry="20" fill="#ff8dc7"/>
+        <ellipse cx="120" cy="85" rx="15" ry="20" fill="#ff8dc7"/>
+        <path d="M85 120 Q100 130 115 120" stroke="#ff2f87" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="100" cy="115" r="4" fill="#ff5ca8"/>
+        <path d="M70 110 L55 105 L60 115 Z" fill="#ff8dc7"/>
+        <path d="M130 110 L145 105 L140 115 Z" fill="#ff8dc7"/>
+      </svg>
+
+      <div class="valentine-card">
+        <h2 class="card-title" id="cardTitle">Hey My Baby 💗</h2>
+        <p class="card-message" id="cardMessage">
+          I've been holding this question in my heart for a while…<br><br>
+          Will you be my Valentine? 💝
+        </p>
+        <div class="button-group" id="buttonGroup">
+          <button class="btn btn-yes" id="btnYes">Yes! 💖</button>
+          <button class="btn btn-no" id="btnNo">No 🙈</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final Scene -->
+  <div class="final-scene" id="finalScene">
+    <div class="final-content">
+      <div class="final-title">Thank You My Baby 💕</div>
+      <div class="final-message">You've made this moment perfect</div>
+      <button class="btn-back" onclick="window.location.href='index.html'">
+        Click here to go back
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // ==================== STATE MANAGEMENT ====================
+    let noClickCount = 0;
+    
+    const noMessages = [
+      { title: "Wait… 🥺", message: "What if I asked you a little sweeter? " },
+      { title: "Hmm…", message: "What if I choose you every single day? 🌷" },
+      { title: "Hold on…", message: "What if I hold your hand through everything? " },
+      { title: "Still no?", message: "What if I asked you again my baby? 🌸" },
+      { title: "Last chance…", message: "What if my heart already will pop out if you say no?" }
+    ];
+
+    // ==================== DOM ELEMENTS ====================
+    const introScene = document.getElementById('introScene');
+    const flashOverlay = document.getElementById('flashOverlay');
+    const bookScene = document.getElementById('bookScene');
+    const bookElement = document.getElementById('bookElement');
+    const valentineContainer = document.getElementById('valentineContainer');
+    const cardTitle = document.getElementById('cardTitle');
+    const cardMessage = document.getElementById('cardMessage');
+    const buttonGroup = document.getElementById('buttonGroup');
+    const btnYes = document.getElementById('btnYes');
+    const btnNo = document.getElementById('btnNo');
+    const finalScene = document.getElementById('finalScene');
+
+    // ==================== INTRO SEQUENCE ====================
+    setTimeout(() => {
+      // Flash effect
+      flashOverlay.classList.add('active');
+      
+      setTimeout(() => {
+        // Hide intro and flash
+        introScene.classList.add('hidden');
+        flashOverlay.classList.remove('active');
+        
+        // Show book
+        bookScene.classList.add('visible');
+        
+        // Remove intro from DOM after transition
+        setTimeout(() => {
+          introScene.remove();
+        }, 500);
+      }, 300);
+    }, 4500);
+
+    // ==================== BOOK CLICK ====================
+    bookElement.addEventListener('click', () => {
+      bookScene.classList.remove('visible');
+      setTimeout(() => {
+        valentineContainer.classList.add('visible');
+        bookScene.remove();
+      }, 400);
+    });
+
+    // ==================== YES BUTTON ====================
+    btnYes.addEventListener('click', () => {
+      cardTitle.textContent = "YAYYY! 💞";
+      cardMessage.innerHTML = `
+        You just made my heart so happy! 🥺❤️<br><br>
+        I promise to love you, choose you, and cherish you every single day. 💝
+      `;
+      buttonGroup.innerHTML = `
+        <button class="btn btn-yes" id="foreverBtn">Forever & Always 💕</button>
+      `;
+
+      // Add event listener to the Forever & Always button
+      document.getElementById('foreverBtn').addEventListener('click', () => {
+        // Fade out valentine container
+        valentineContainer.style.transition = 'opacity 1s ease';
+        valentineContainer.style.opacity = '0';
+
+        // Show final scene after fade
+        setTimeout(() => {
+          valentineContainer.style.display = 'none';
+          finalScene.classList.add('visible');
+        }, 1000);
+      });
+    });
+
+    // ==================== NO BUTTON ====================
+    btnNo.addEventListener('click', () => {
+      if (noClickCount < noMessages.length) {
+        const currentMessage = noMessages[noClickCount];
+        cardTitle.textContent = currentMessage.title;
+        cardMessage.textContent = currentMessage.message;
+        noClickCount++;
+      }
+
+      if (noClickCount === noMessages.length) {
+        cardTitle.textContent = "Okay… no escape now 😌";
+        cardMessage.innerHTML = "Will you be my Valentine? 💝<br><br>(There's only one answer left…)";
+        buttonGroup.innerHTML = `
+          <button class="btn btn-yes" id="finalYes">Yes! 💘</button>
+        `;
+        
+        document.getElementById('finalYes').addEventListener('click', () => {
+          cardTitle.textContent = "YAYYY! 💞";
+          cardMessage.innerHTML = `
+            You just made my heart so happy! 🥺❤️<br><br>
+            I promise to love you, choose you, and cherish you every single day. 💝
+          `;
+          buttonGroup.innerHTML = `
+            <button class="btn btn-yes" id="foreverBtn2">Forever & Always 💕</button>
+          `;
+
+          // Add event listener to the Forever & Always button
+          document.getElementById('foreverBtn2').addEventListener('click', () => {
+            // Fade out valentine container
+            valentineContainer.style.transition = 'opacity 1s ease';
+            valentineContainer.style.opacity = '0';
+
+            // Show final scene after fade
+            setTimeout(() => {
+              valentineContainer.style.display = 'none';
+              finalScene.classList.add('visible');
+            }, 1000);
+          });
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

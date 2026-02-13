@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="ade.css">
+<title>For My Love ❤️</title>
+
+</head>
+
+<body>
+
+<!-- PASSWORD PAGE -->
+<div id="login" class="center">
+  <div class="login-card">
+    <h2>Guess and enter the password, baby 💕</h2>
+    <input type="password" id="password" placeholder="Secret password">
+    <button onclick="checkPassword()">Enter</button>
+    <p id="error" style="color:#ff4d94;"></p>
+  </div>
+</div>
+
+
+<!-- WELCOME MESSAGE -->
+<div id="welcome" class="center" style="display:none;">
+  <h2>Good guest baby. Stay and make yourself comfortable 💖</h2>
+</div>
+
+<!-- MAIN WEBSITE -->
+<div id="main" style="display:none;">
+
+  <nav>
+    <a onclick="showSection('valentine')">Valentine</a>
+    <a onclick="showSection('music')">Music</a>
+    <a onclick="showSection('memory')">Memory Book</a>
+  </nav>
+
+  <!-- VALENTINE SECTION -->
+  <div id="valentine" class="section active">
+    <h1>My Letters For You 💌</h1>
+
+    <div class="letters-container">
+
+      <div class="letter-card" onclick="toggleLetter(this)">
+        <div class="letter-title">First Letter</div>
+        <div class="letter-message">
+          You are the most beautiful thing that ever happened to me.
+          Loving you feels like home.
+        </div>
+      </div>
+
+      <div class="letter-card" onclick="toggleLetter(this)">
+        <div class="letter-title">Second Letter</div>
+        <div class="letter-message">
+          Every day with you is my favorite day.
+          I would choose you again and again (bisag maldita!!!).
+        </div>
+      </div>
+
+      <div class="letter-card" onclick="toggleLetter(this)">
+        <div class="letter-title">Third Letter</div>
+        <div class="letter-message">
+          Your smile is my peace.
+          Your voice is my comfort (headache 🤪).
+        </div>
+      </div>
+
+      <div class="letter-card" onclick="toggleLetter(this)">
+        <div class="letter-title">Fourth Letter</div>
+        <div class="letter-message">
+          Knowing you're hurting feels unbearable pain.
+        </div>
+      </div>
+
+      <div class="letter-card" onclick="toggleLetter(this)">
+        <div class="letter-title">Fifth Letter</div>
+        <div class="letter-message">
+          I promise to love you gently, loudly, softly, irritatingly,
+          and in every way you deserve.
+        </div>
+      </div>
+
+      <div class="letter-card" onclick="toggleLetter(this)">
+        <div class="letter-title">Last Letter</div>
+        <div class="letter-message">
+          Will you be my valentine baby?
+          <p> <a href="foryou.html" style="text-decoration: none;">click this baby!</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<div id="music" class="section">
+  <h1>Our Songs 🎶</h1>
+
+  <div class="song-grid">
+
+    <div class="song-card" onclick="playSong(this, 'iris.mp3')">
+      <img src="MEandHer.png" alt="Iris">
+      <h3>Iris</h3>
+    </div>
+
+    <div class="song-card" onclick="playSong(this, 'thinkingboutyou.mp3')">
+      <img src="GorgeousHer.png" alt="Second Song">
+      <h3>Thingking Bout You</h3>
+    </div>
+
+    <div class="song-card" onclick="playSong(this, 'babyblue.mp3')">
+      <img src="HERinblue.png" alt="Baby Blue">
+      <h3>Baby Blue</h3>
+    </div>
+
+    <div class="song-card" onclick="playSong(this, 'always.mp3')">
+      <img src="pinkOF.png" alt="Iris">
+      <h3>Always</h3>
+    </div>
+
+    <div class="song-card" onclick="playSong(this, 'superpower.mp3')">
+      <img src="ME.png" alt="Second Song">
+      <h3>Superpower</h3>
+    </div>
+
+    <div class="song-card" onclick="playSong(this, 'whoknows.mp3')">
+      <img src="CuteUs.png" alt="Baby Blue">
+      <h3>Who Knows</h3>
+    </div>
+
+  </div>
+
+  <div class="volume-control">
+    <label>Volume</label>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.25">
+  </div>
+
+</div>
+
+
+
+  <!-- MEMORY SECTION -->
+  <div id="memory" class="section">
+    <h1>Memory Book</h1>
+  </div>
+
+</div>
+
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+  <source src="iris.mp3" type="audio/mpeg" >
+</audio>
+
+<div class="music-control" onclick="toggleMusic()">🎵</div>
+
+<script src="ade.js"></script>
+
+</body>
+</html>
