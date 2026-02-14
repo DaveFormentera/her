@@ -513,7 +513,7 @@
         <h2 class="card-title" id="cardTitle">Hey My Baby 💗</h2>
         <p class="card-message" id="cardMessage">
           I've been holding this question in my heart for a while…<br><br>
-          Will you be my Valentine? 💝
+          Will you be my Valentine?
         </p>
         <div class="button-group" id="buttonGroup">
           <button class="btn btn-yes" id="btnYes">Yes! 💖</button>
@@ -590,7 +590,7 @@
 
     // ==================== YES BUTTON ====================
     btnYes.addEventListener('click', () => {
-      cardTitle.textContent = "YAYYY! 💞";
+      cardTitle.textContent = "YAYYY!";
       cardMessage.innerHTML = `
         You just made my heart so happy! 🥺❤️<br><br>
         I promise to love you, choose you, and cherish you every single day. 💝
@@ -623,20 +623,20 @@
       }
 
       if (noClickCount === noMessages.length) {
-        cardTitle.textContent = "Okay… no escape now 😌";
-        cardMessage.innerHTML = "Will you be my Valentine? 💝<br><br>(There's only one answer left…)";
+        cardTitle.textContent = "Okay… no escape now";
+        cardMessage.innerHTML = "Will you be my Valentine?<br><br>(There's only one answer left…)";
         buttonGroup.innerHTML = `
           <button class="btn btn-yes" id="finalYes">Yes! 💘</button>
         `;
         
         document.getElementById('finalYes').addEventListener('click', () => {
-          cardTitle.textContent = "YAYYY! 💞";
+          cardTitle.textContent = "YAYYY!";
           cardMessage.innerHTML = `
             You just made my heart so happy! 🥺❤️<br><br>
-            I promise to love you, choose you, and cherish you every single day. 💝
+            I promise to love you, choose you, and cherish you every single day.
           `;
           buttonGroup.innerHTML = `
-            <button class="btn btn-yes" id="foreverBtn2">Forever & Always 💕</button>
+            <button class="btn btn-yes" id="foreverBtn2">Forever & Always</button>
           `;
 
           // Add event listener to the Forever & Always button
@@ -657,4 +657,5 @@
   </script>
 
 </body>
+
 </html>
